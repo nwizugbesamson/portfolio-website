@@ -101,7 +101,7 @@ def update_page():
     return render_template('update.html', form=form)
 
 
-if __name__ == '__main__':
-    # db.create_all()
-    app.run()
+# if __name__ == '__main__':
+#     # db.create_all()
+#     app.run()
     
