@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% block content %}
+
+<section class="banner_area">
+           
+</section>
+
+<section class="contact_area p_120">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-8">
+      
+        <h1>Add a new project into the database</h1>
+      
+          {{wtf.quick_form(form, novalidate=True)}}
+      
+      
+  	  <p class="space-above"><a href="{{url_for('portfolio_page')}}">See all projects</a></p>
+      
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

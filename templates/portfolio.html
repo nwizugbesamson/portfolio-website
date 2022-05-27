@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	
+
+	
+<!--================Home Banner Area =================-->
+<section class="banner_area">
+   
+</section>
+<!--================End Home Banner Area =================-->
+
+<!--================Home Gallery Area =================-->
+<section class="home_gallery_area p_120">
+	<div class="container">
+		<div class="main_title">
+			<h2>Projects</h2>
+			<p>projects completed successfully.</p>
+		</div>
+		<div class="isotope_fillter">
+			<ul class="gallery_filter list">
+				<li class="active" data-filter="*"><a href="{{url_for('portfolio_page')}}">All</a></li>
+				<li data-filter=".brand"><a href="{{url_for('portfolio_page')}}">Data Science</a></li>
+				<li data-filter=".manipul"><a href="{{url_for('portfolio_page')}}">Dev ops</a></li>
+				<li data-filter=".creative"><a href="{{url_for('portfolio_page')}}">Web development</a></li>
+				<li data-filter=".design"><a href="{{url_for('portfolio_page')}}">Web Scraping</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="container">
+		<div class="gallery_f_inner row imageGallery1">
+			
+			{% for project in projects  %}
+				
+			<div class="col-lg-4 col-md-4 col-sm-6 {{project.identifiers}}">
+				<div class="h_gallery_item">
+					<div class="g_img_item">
+						<img class="img-fluid" src="{{project.img_url}}" alt="">
+						<a class="light" href="{{project.git_url}}" target="_blank"><img src="static/img/gallery/icon.png" alt=""></a>
+					</div>
+					<div class="g_item_text">
+						<a href="{{project.git_url}}" target="_blank">
+						<h4>{{project.name}}</h4>
+						<p>{{project.description}}</p>
+						</a>
+					</div>
+				</div>
+			</div>
+
+			{% endfor %}
+			
+		</div>
+	</div>
+</section>
+<!--================End Home Gallery Area =================-->
+        
+{% endblock content %}
