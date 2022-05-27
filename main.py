@@ -18,7 +18,7 @@ app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 Bootstrap(app)
 
 # Initialize and configure sqlalchemy
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///projects.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = (os.environ.get('DATABASE_URL'), 'sqlite:///projects.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -100,6 +100,7 @@ def update_page():
         return redirect(url_for('home_page'))
     return render_template('update.html', form=form)
 
+db.create_all()
 
 # if __name__ == '__main__':
 #     # db.create_all()
