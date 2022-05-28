@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask import Flask, render_template, request, flash, redirect, url_for, send_from_directory
 from smtplib import SMTP_SSL
 import os
+import re
 from forms import UpdateForm
 
 EMAIL = os.environ.get('EMAIL')
@@ -18,7 +19,10 @@ app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 Bootstrap(app)
 
 # Initialize and configure sqlalchemy
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///projects.db')
+uri = os.getenv("DATABASE_URL", 'sqlite:///projects.db')  # or other relevant config var
+if uri.startswith("postgres://"):
+    uri = uri.replace("postgres://", "postgresql://", 1)
+app.config['SQLALCHEMY_DATABASE_URI'] = uri
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
